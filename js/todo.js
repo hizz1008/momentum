@@ -17,8 +17,9 @@ function deleteToDo(event) {
 
 function painToDo(newTodo) {
   const li = document.createElement("li");
+   li.id = newTodo.id;
   const span = document.createElement("span");
-  span.innerText = newTodo;
+  span.innerText = newTodo.text;
   const btn = document.createElement("button");
   btn.innerText = "❌";
   btn.addEventListener("click", deleteToDo);
@@ -30,9 +31,13 @@ function painToDo(newTodo) {
 function handleToDoSubmit(event) {
   event.preventDefault();
   const newTodo = toDoInput.value;
+  const newTodoObj = {
+    text:newTodo,
+    id:Date.now()
+  };
   toDoInput.value = "";
-  toDos.push(newTodo);
-  painToDo(newTodo);
+  toDos.push(newTodoObj );
+  painToDo(newTodoObj);
   saveToDo();
 }
 
